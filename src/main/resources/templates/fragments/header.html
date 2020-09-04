@@ -1,0 +1,43 @@
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta http-equiv="x-ua-compatible" content="ie=edge" />
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" />
+<!-- Bootstrap core CSS -->
+<link th:href="@{/layout/assets/css/bootstrap.min.css}" rel="stylesheet" />
+<!-- Material Design Bootstrap -->
+<link th:href="@{/layout/assets/css/mdb.css}" rel="stylesheet" />
+<!-- Your custom styles (optional) -->
+<link th:href="@{/layout/assets/css/style.css}" rel="stylesheet" />
+<!-- Your jquery-ui css -->
+<link th:href="@{/layout/vendors/js/jquery-ui/jquery-ui.min.css}" rel="stylesheet" />
+
+<!DOCTYPE html>
+<html
+	xmlns:th="http://thymeleaf.org/"
+	xmlns:layout="http://ultraq.net.nz/thymeleaf/layout/"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+	<nav class="navbar navbar-toggleable-md navbar-inverse bg-primary">
+		<button type="button" class="navbar-toggler navbar-toggler-right" data-toggle="collapse" data-target="navbar">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<a href="/" class="navbar-brand">Helpdesk</a>
+		
+		<div class="collapse navbar-collapse" id="navbar">
+			<ul class="navbar-nav mr-auto" sec:authorize="isAuthenticated()">
+				<li class="nav-item">
+					<a href="/users" class="nav-link">Users</a>
+				</li>
+				<li class="nav-item">
+					<a href="/roles" class="nav-link">Roles</a>
+				</li>
+			</ul>
+			<ul class="navbar-nav ml-auto" sec:authorize="isAuthenticated()">
+				<li class="nav-item">
+					<a href="/logout" class="nav-link">Logout</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+</html>

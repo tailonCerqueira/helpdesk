@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+	xmlns:layout="http://ultraq.net.nz/thymeleaf/layout/">
+<head>
+	<meta charset="UTF-8">
+	<title>HelpDesk</title>
+
+	<link rel="stylesheet" type="text/css" th:href="@{/layout/bootstrap/css/bootstrap.min.css}"/>	
+	<link rel="stylesheet" type="text/css" th:href="@{/layout/css/app.css}"/>
+</head>
+	<div>
+		<div class="col-xs-12 col-md-12 text-center">
+			<h4>Create new User</h4>
+			<form th:action="@{/users}" th:method="post">
+				<div class="row">
+					<div class="form-group col-md-6 col-xs-12">
+						<input type="text" th:field="*{user.name}" name="name" placeholder="Enter user name:" class="form-control" />
+						<span class="text-danger" th:if="${#fields.hasErrors('user.name')}" th:errors="*{user.name}">User name error</span>
+					</div>	
+					<div class="form-group col-md-6 col-xs-12">
+						<input type="text" th:field="*{user.lastName}" name="lastName" placeholder="Enter user lastname:" class="form-control" />
+						<span class="text-danger" th:if="${#fields.hasErrors('user.lastName')}" th:errors="*{user.lastName}">User Lastname error</span>
+					</div>	
+				</div>
+				<div class="form-group">
+					<input type="email" th:field="*{user.email}" name="email" placeholder="Enter user email:" class="form-control" />
+					<span class="text-danger" th:if="${#fields.hasErrors('user.email')}" th:errors="*{user.email}">User email error</span>
+				</div>	
+				<div class="form-group">
+					<input type="password" th:field="*{user.password}" name="password" placeholder="Enter user password:" class="form-control" />
+					<span class="text-danger" th:if="${#fields.hasErrors('user.password')}" th:errors="*{user.password}">User password error</span>
+				</div>	
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary">Save</button>
+					<a href="/roles" class="btn btn-default">back</a>
+				</div>
+			</form>
+		</div>
+	</div>
+	<script th:src="@{/layout/js/jquery.js}"></script>
+	<script th:src="@{/layout/bootstrap/js/bootstrap.min.js}"></script>
+</html>

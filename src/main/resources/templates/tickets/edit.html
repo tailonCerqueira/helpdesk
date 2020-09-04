@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+	xmlns:layout="http://ultraq.net.nz/thymeleaf/layout/">
+<head>
+	<meta charset="UTF-8">
+	<title>HelpDesk</title>
+
+	<link rel="stylesheet" type="text/css" th:href="@{/layout/bootstrap/css/bootstrap.min.css}"/>	
+	<link rel="stylesheet" type="text/css" th:href="@{/layout/css/app.css}"/>
+</head>
+	<div>
+		<div class="col-xs-12 col-md-12 text-center">
+			<h4>Edit a Ticket</h4>
+			
+			<form th:action="@{/tickets/update/{id} (id = ${ticket.id})}" th:object="${ticket}" th:method="POST">
+				<input type="hidden" th:field="*{id}" > 
+				<div class="form-group">
+					<input type="text" th:field="*{name}" name="name" placeholder="Enter ticket name:" class="form-control" />
+					<span class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Ticket name error</span>					
+				</div>	
+				<div class="form-group">
+					<textarea rows="" cols="" th:field="*{description}" name="description" placeholder="Enter tickets details" class="form-control"></textarea>
+					<span class="text-danger" th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Tickets detail error</span>					
+				</div>
+				<div class="form-group">
+					<select th:field="*{technician}" class="custom-select">
+						<option th:each="tech : ${techs}"
+								th:value="${tech.id}"
+								th:text="${tech.name}"
+								th:selected="${tech.id == ticket.technician.id}">
+						</option>
+					</select>
+				</div>
+				<div class="form-group" th:if="${interactions_count > 0}" >
+					<label class="custom-control custom-checkbox" th:if="${userLoggedIn == ticket.userOpen.id or userLoggedIn.roles[0].name == 'ADMIN'}">
+						<input type="checkbox" class="custom-control-input" th:checked="${ticket.finished}" />
+						<span class="custom-control-indicator"></span>
+						<span class="custom-control-description">Closed?</span>
+					</label>
+				</div>
+				<div class="form-group" th:if="${interactions_count == 0}">
+					<p class="text-danger">Need at last one interaction to close this ticket</p>
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary" th:if="${userLoggedIn == ticket.userOpen.id or userLoggedIn.roles[0].name == 'ADMIN'}">Save</button>
+					<a href="/roles" class="btn btn-default">back</a>
+				</div>
+			</form>
+		</div>
+	</div>
+	<script th:src="@{/layout/js/jquery.js}"></script>
+	<script th:src="@{/layout/bootstrap/js/bootstrap.min.js}"></script>
+</html>

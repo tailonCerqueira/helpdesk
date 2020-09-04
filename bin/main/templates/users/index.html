@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+	xmlns:layout="http://ultraq.net.nz/thymeleaf/layout/">
+<head>
+	<meta charset="UTF-8">
+	<title>HelpDesk</title>
+
+	<link rel="stylesheet" type="text/css" th:href="@{/layout/bootstrap/css/bootstrap.min.css}"/>	
+	<link rel="stylesheet" type="text/css" th:href="@{/layout/css/app.css}"/>
+</head>
+	<div>
+		<div class="col-xs-12 col-md-12">
+			<a href="/users/new" class="btn btn-success">Create</a>
+		</div>
+		<div class="col-xs-12 col-md-12">
+			<h5>Listing Users</h5>
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Last Name</th>
+						<th>Email</th>
+						<th>Active</th>
+						<th>Actions</th>				
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="user : ${list}">
+						<td th:text="${user.name}"></td>
+						<td th:text="${user.lastName}"></td>
+						<td th:text="${user.email}"></td>
+						<td th:switch="${user.active}">
+							<span th:case="${true}" class="badge badge-success" th:text="${user.active}"></span>
+							<span th:case="${false}" class="badge badge-warning" th:text="${user.active}"></span>
+						</td>
+						<td>
+							<a th:href="@{/users/edit/{id}(id = ${user.id})}" class="btn btn-info inline">Edit</a>
+							<form th:action="@{/users/{id}(id = ${user.id})}" th:method="delete" class="inline">
+								<button type="submit" class="btn btn-danger">Delete</button>
+							</form>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<script th:src="@{/layout/js/jquery.js}"></script>
+	<script th:src="@{/layout/bootstrap/js/bootstrap.min.js}"></script>
+</html>
