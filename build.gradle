@@ -47,6 +47,9 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
 	compile('org.thymeleaf:thymeleaf')
 	compile('org.thymeleaf:thymeleaf-spring4')
+	// https://mvnrepository.com/artifact/com.itextpdf/itextpdf
+	compile group: 'com.itextpdf', name: 'itextpdf', version: '5.5.13.1'
+
 	compile('nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect')
 
 	

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+	xmlns:layout="http://ultraq.net.nz/thymeleaf/layout/">
+<head>
+	<meta charset="UTF-8">
+	<title>HelpDesk</title>
+
+	<link rel="stylesheet" type="text/css" th:href="@{/layout/bootstrap/css/bootstrap.min.css}"/>	
+	<link rel="stylesheet" type="text/css" th:href="@{/layout/css/app.css}"/>
+</head>
+	<div>
+		<div class="col-xs-12 col-md-12 text-center">
+			<h4>List all tickets by days</h4>
+			
+			<form th:action="@{/reports/tickets/}" th:method="post">
+				<div class="form-group">
+					<select name="day" class="custom-select">
+						<option value="7">Last 7 days</option>
+						<option value="10">Last 10 days</option>
+						<option value="15">Last 15 days</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary">Generate</button>				
+				</div>
+			</form>
+		</div>
+		<div class="col-xs-12 col-md-12 text-center">
+			<div class="card">
+				<div class="card-header">
+				</div>
+				<div class="card-block">
+		            <table class="table table-bordered">
+		                <thead>
+		                    <tr>
+		                        <th>Name</th>
+		                        <th>Date Created</th>
+		                        <th>Finished</th>
+		                    </tr>
+		                </thead>
+		                <tbody>
+		                    <tr th:each="ticket : ${list}">
+		                        <td th:text="${ticket.name}"></td>
+		                        <td th:text="${#dates.format(ticket.created, 'dd-MM-yyyy')}"></td>
+		                        <td th:switch="${ticket.finished}">
+		                            <span th:case="${true}" class="badge badge-success" th:text="${ticket.finished}"></span>
+		                            <span th:case="${false}" class="badge badge-danger" th:text="${ticket.finished}"></span>
+		                        </td>
+		                    </tr>
+		                </tbody>
+		            </table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script th:src="@{/layout/js/jquery.js}"></script>
+	<script th:src="@{/layout/bootstrap/js/bootstrap.min.js}"></script>
+</html>

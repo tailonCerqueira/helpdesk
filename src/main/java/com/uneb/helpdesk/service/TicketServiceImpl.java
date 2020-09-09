@@ -108,4 +108,8 @@ public class TicketServiceImpl implements TicketService{
 	private Ticket findById(Long id) {
 		return this.ticketRepository.findById(id).orElse(null);
 	}
+	@Override
+	public List<Ticket> reportTicketByDays(Integer day) {
+		return this.ticketRepository.findAllTicketsByDay(day);
+	}
 }
