@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.uneb.helpdesk.model.Interaction;
@@ -47,7 +46,9 @@ public class TicketController {
 	@GetMapping
 	public String index(Model model) {
 		model.addAttribute("list", this.ticketService.findAll());
+		//User userLoggedIn = this.userService.findCurrentUser();
 		model.addAttribute("userLoggedIn", this.userService.findCurrentUser());
+		//System.out.print(userLoggedIn.getId());
 		return "tickets/index";
 	}
 	
@@ -75,6 +76,7 @@ public class TicketController {
 		String userName = auth.getName();
 				
 		User userLogged = this.userService.findByEmail(userName);		
+		model.addAttribute("userLoggedIn", userLogged);
 		model.addAttribute("techs", this.userService.findAllWhereRoleEquals(adminRole.getId(), userLogged.getId()));
 				
 		model.addAttribute("ticket", this.ticketService.show(id));

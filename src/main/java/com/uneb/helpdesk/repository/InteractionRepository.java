@@ -1,14 +1,11 @@
 package com.uneb.helpdesk.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import com.uneb.helpdesk.model.Interaction;
 
-public interface InteractionRepository extends JpaRepository<Interaction, Long>{
-
-	////////////////////////////
-	Interaction findOne(Long id);
-
-	
+@Repository
+public interface InteractionRepository extends JpaRepository<Interaction, Long>{	
 	
 }

@@ -22,17 +22,22 @@ public class InteractionServiceImpl implements InteractionService{
 	private TicketRepository ticketRepository;
 	
 	@Autowired
+	private TicketService ticketService;
+	
+	@Autowired
 	private UserRepository userRepository;
-	public InteractionServiceImpl(InteractionRepository interactionRepository, TicketRepository ticketRepository, UserRepository userRepository) {
+	public InteractionServiceImpl(InteractionRepository interactionRepository, TicketRepository ticketRepository
+			, UserRepository userRepository, TicketService ticketService) {
 		this.interactionRepository = interactionRepository;
 		this.ticketRepository = ticketRepository;
 		this.userRepository = userRepository;
+		this.ticketService = ticketService;
 	}
 	
 	@Override
 	public Interaction create(Interaction interaction, Long ticketId) {		
 		
-		Ticket ticket = this.ticketRepository.findByOne(ticketId);
+		Ticket ticket = this.ticketService.show(ticketId);
 		
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String username = auth.getName();
@@ -47,15 +52,17 @@ public class InteractionServiceImpl implements InteractionService{
 
 	@Override
 	public Boolean delete(Long id, Long ticketId) { 
-		Interaction interaction = this.interactionRepository.findOne(id);
+		Interaction interaction = this.findById(id);
 		
 		if(interaction != null) {
 			this.interactionRepository.delete(interaction);			
 		}
-		
-		
-		
+						
 		return false;
+	}
+	
+	private Interaction findById(Long id) {
+		return this.interactionRepository.findById(id).orElse(null);
 	}
 
 }

@@ -44,7 +44,7 @@
 				</div>
 				<div class="form-group">
 					<button type="submit" class="btn btn-primary" th:if="${userLoggedIn == ticket.userOpen.id or userLoggedIn.roles[0].name == 'ADMIN'}">Save</button>
-					<a href="/roles" class="btn btn-default">back</a>
+					<a href="/tickets" class="btn btn-default">back</a>
 				</div>
 			</form>
 		</div>

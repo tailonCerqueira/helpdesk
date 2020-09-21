@@ -41,7 +41,7 @@
 				<h2>New Interaction</h2>
 				<form action="" th:action="@{/tickets/{ticketId}/interactions(ticketId = ${ticket.id})}" th:object="${interaction}" th:method="post">	
 					<div class="form-group">
-						<input type="text" disabled="disabled" class="form-control" th:value="${#authentication.name}" />
+						<input type="text" disabled="disabled" class="form-control" value="${#authentication.name}" />
 					</div>
 					<div class="form-group">
 						<textarea class="form-control" th:field="*{text}" placeholder="Enter text interaction"></textarea>

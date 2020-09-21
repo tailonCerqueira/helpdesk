@@ -13,7 +13,5 @@ import com.uneb.helpdesk.model.Ticket;
 public interface TicketRepository extends PagingAndSortingRepository<Ticket, Long>{
 	@Query(value = "select ticket.* from tickets as ticket where ticket.created >= date(now()) - interval (:day) day", nativeQuery = true)
 	public List<Ticket> findAllTicketsByDay(@Param("day") Integer day);
-	//////////////////////////////
-	Ticket findByOne(Long ticketId);
 	
 }
