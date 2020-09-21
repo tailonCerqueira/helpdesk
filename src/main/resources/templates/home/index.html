@@ -2,30 +2,18 @@
 <html lang="pt" xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
 	xmlns:layout="http://ultraq.net.nz/thymeleaf/layout/">
-<head>
-	<meta charset="UTF-8">
-	<title>HelpDesk</title>
-
-	<link rel="stylesheet" type="text/css" th:href="@{/layout/bootstrap/css/bootstrap.min.css}"/>	
-	<link rel="stylesheet" type="text/css" th:href="@{/layout/css/app.css}"/>
-</head>
-	<div>
-		<div class="col-xs-12 col-md-12">
-			<a href="/users" class="btn btn-success">List USER</a>
-			<a href="/users/new" class="btn btn-success">Create USER</a>
-			<a href="/tickets" class="btn btn-success">List Tickets</a>
-			<a href="/tickets/new" class="btn btn-success">Create Ticket</a>
-			<a href="/roles" class="btn btn-success">Roles</a>
-			<a href="/roles/new" class="btn btn-success">Create Role</a>
+	
+	<body id="page-top">
+		<!-- Page Wrapper -->
+	  	<div id="wrapper">	  			
+	  		<div id="content-wrapper" class="d-flex flex-column">
+	  			<th:block th:replace="fragments/sidebar"></th:block>
+	  			<!-- Main Content -->
+      			<div id="content">
+      			
+      			</div>
+	  		</div>  				
 		</div>
-		<div class="col-xs-12 col-md-12">
-			<h2>
-				Home
-				<!-- <span th:text="${#authentication.name}"></span> -->
-				<span sec:authentication="username"></span>
-			</h2>			
-		</div>
-	</div>
-	<script th:src="@{/layout/js/jquery.js}"></script>
-	<script th:src="@{/layout/bootstrap/js/bootstrap.min.js}"></script>
+	</body>
+	<th:block th:replace="fragments/footer"></th:block>
 </html>

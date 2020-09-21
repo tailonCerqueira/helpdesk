@@ -2,41 +2,40 @@
 <html lang="pt" xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
 	xmlns:layout="http://ultraq.net.nz/thymeleaf/layout/">
-<head>
-	<meta charset="UTF-8">
-	<title>HelpDesk</title>
-
-	<link rel="stylesheet" type="text/css" th:href="@{/layout/bootstrap/css/bootstrap.min.css}"/>	
-	<link rel="stylesheet" type="text/css" th:href="@{/layout/css/app.css}"/>
-</head>
-
-	<div>
-		<div class="col-xs-12 col-md-12 text-center">
-			<h4>Create new User</h4>
-			<form th:action="@{/cadastrar}" th:method="post">
-				<div class="row">
-					<div class="form-group col-md-6 col-xs-12">
-						<input type="text" th:field="*{user.name}" id="name" name="name" placeholder="Entre com o nome de UsuÃ¡rio" class="form-control" />
-						<!--<span class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">User password error</span> -->					
-					</div>	
-					<div class="form-group col-md-6 col-xs-12">
-						<input type="text" th:field="*{user.lastName}" id="lastName" name="lastName" placeholder="Entre com o sobrenome" class="form-control" />
-						<!--<span class="text-danger" th:if="${#fields.hasErrors('lastName')}" th:errors="lastName">User password error</span> -->				
-						
-					</div>	
+	<th:block th:replace="fragments/header"></th:block>
+	<body id="page-top">
+		<!-- Page Wrapper -->
+	  	<div id="wrapper">
+			<div id="content-wrapper" class="d-flex flex-column">
+				<div class="container">
+					<h4>Create new User</h4>
+					<form th:action="@{/cadastrar}" th:method="post">
+						<div class="row">
+							<div class="form-group col-md-6 col-xs-12">
+								<input type="text" th:field="*{user.name}" id="name" name="name" placeholder="Entre com o nome de Usuário" class="form-control" />
+								<!--<span class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">User password error</span> -->					
+							</div>	
+							<div class="form-group col-md-6 col-xs-12">
+								<input type="text" th:field="*{user.lastName}" id="lastName" name="lastName" placeholder="Entre com o sobrenome" class="form-control" />
+								<!--<span class="text-danger" th:if="${#fields.hasErrors('lastName')}" th:errors="lastName">User password error</span> -->				
+								
+							</div>	
+						</div>
+						<div class="form-group">
+							<input type="email" th:field="*{user.email}" id="email" name="email" placeholder="Entre com o email" class="form-control" />
+							<!--<span class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="email">User password error</span> -->
+						</div>	
+						<div class="form-group">
+							<input type="password" th:field="*{user.password}" id="password" name="password" placeholder="Entre com a senha" class="form-control" />
+							<!--<span class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="password">User password error</span> -->
+						</div>	
+						<div class="form-group">
+							<button type="submit" class="btn btn-primary">Save</button>
+						</div>
+					</form>
 				</div>
-				<div class="form-group">
-					<input type="email" th:field="*{user.email}" id="email" name="email" placeholder="Entre com o email" class="form-control" />
-					<!--<span class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="email">User password error</span> -->
-				</div>	
-				<div class="form-group">
-					<input type="password" th:field="*{user.password}" id="password" name="password" placeholder="Entre com a senha" class="form-control" />
-					<!--<span class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="password">User password error</span> -->
-				</div>	
-				<div class="form-group">
-					<button type="submit" class="btn btn-primary">Save</button>
-				</div>
-			</form>
+			</div>
 		</div>
-	</div>
+	</body>
+	<th:block th:replace="fragments/footer"></th:block>
 </html>

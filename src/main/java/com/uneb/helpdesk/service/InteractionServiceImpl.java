@@ -9,7 +9,6 @@ import com.uneb.helpdesk.model.Interaction;
 import com.uneb.helpdesk.model.Ticket;
 import com.uneb.helpdesk.model.User;
 import com.uneb.helpdesk.repository.InteractionRepository;
-import com.uneb.helpdesk.repository.TicketRepository;
 import com.uneb.helpdesk.repository.UserRepository;
 
 @Service
@@ -17,19 +16,16 @@ public class InteractionServiceImpl implements InteractionService{
 
 	@Autowired
 	private InteractionRepository interactionRepository;
-	
-	@Autowired
-	private TicketRepository ticketRepository;
+
 	
 	@Autowired
 	private TicketService ticketService;
 	
 	@Autowired
 	private UserRepository userRepository;
-	public InteractionServiceImpl(InteractionRepository interactionRepository, TicketRepository ticketRepository
+	public InteractionServiceImpl(InteractionRepository interactionRepository
 			, UserRepository userRepository, TicketService ticketService) {
 		this.interactionRepository = interactionRepository;
-		this.ticketRepository = ticketRepository;
 		this.userRepository = userRepository;
 		this.ticketService = ticketService;
 	}

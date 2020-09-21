@@ -4,12 +4,18 @@
 	xmlns:layout="http://ultraq.net.nz/thymeleaf/layout/">
 <footer th:fragment="footer" class="footer">
 	<div class="container-fluid text-center">
-		&copy; 2020 Núcleo de Pesquisa e Extensão - Campus II
+		&copy; 2020 Coordenação de Informática - Campus II
 	</div>
 </footer>
-<script th:src="@{/layout/assets/js/jquery.min.js}"></script>
-<script th:src="@{/layout/assets/js/popper.min.js}"></script>
-<script th:src="@{/layout/assets/js/bootstrap.min.js}"></script>
-<script th:src="@{/layout/assets/js/mdb.min.js}"></script>
-<script th:src="@{/layout/assets/js/app.js}"></script>
-<script th:src="@{/layout/vendors/js/jquery-ui/jquery-ui.min.js}"></script>
+<!-- Bootstrap core JavaScript-->
+<script th:src="@{/layout/vendor/jquery/jquery.min.js}"></script>
+<script th:src="@{/layout/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+<!-- Core plugin JavaScript-->
+<script th:src="@{/layout/vendor/jquery-easing/jquery.easing.min.js}"></script>
+
+<!-- Custom scripts for all pages-->
+<script th:src="@{/layout/js/sb-admin-2.min.js}"></script>
+
+<!-- Page level plugins -->
+<script th:src="@{/layout/vendor/chart.js/Chart.min.js}"></script>

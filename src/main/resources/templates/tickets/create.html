@@ -2,41 +2,44 @@
 <html lang="pt" xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
 	xmlns:layout="http://ultraq.net.nz/thymeleaf/layout/">
-<head>
-	<meta charset="UTF-8">
-	<title>HelpDesk</title>
-
-	<link rel="stylesheet" type="text/css" th:href="@{/layout/bootstrap/css/bootstrap.min.css}"/>	
-	<link rel="stylesheet" type="text/css" th:href="@{/layout/css/app.css}"/>
-</head>
-	<div>
-		<div class="col-xs-12 col-md-12 text-center">
-			<h4>Create new Ticket</h4>
-			
-			<form th:action="@{/tickets/}" th:method="post">
-				<div class="form-group">
-					<input type="text" th:field="*{ticket.name}" name="name" placeholder="Enter ticket name:" class="form-control" />
-					<span class="text-danger" th:if="${#fields.hasErrors('ticket.name')}" th:errors="*{ticket.name}">Ticket name error</span>					
-				</div>	
-				<div class="form-group">
-					<textarea rows="" cols="" th:field="*{ticket.description}" name="description" placeholder="Enter tickets details" class="form-control"></textarea>
-					<span class="text-danger" th:if="${#fields.hasErrors('ticket.description')}" th:errors="*{ticket.description}">Tickets detail error</span>					
+	
+	<body id="page-top">
+		<!-- Page Wrapper -->
+	  	<div id="wrapper">
+	  		<th:block th:replace="fragments/sidebar"></th:block>	  	
+	
+			<div id="content-wrapper" class="d-flex flex-column">
+				<!-- Main Content -->
+      			<div id="content">
+					<div class="col-xs-12 col-md-12 text-center">
+						<h4>Create new Ticket</h4>
+						
+						<form th:action="@{/tickets/}" th:method="post">
+							<div class="form-group">
+								<input type="text" th:field="*{ticket.name}" name="name" placeholder="Enter ticket name:" class="form-control" />
+								<span class="text-danger" th:if="${#fields.hasErrors('ticket.name')}" th:errors="*{ticket.name}">Ticket name error</span>					
+							</div>	
+							<div class="form-group">
+								<textarea rows="" cols="" th:field="*{ticket.description}" name="description" placeholder="Enter tickets details" class="form-control"></textarea>
+								<span class="text-danger" th:if="${#fields.hasErrors('ticket.description')}" th:errors="*{ticket.description}">Tickets detail error</span>					
+							</div>
+							<div class="form-group">
+								<select th:field="*{ticket.technician}" class="custom-select">
+									<option th:each="tech : ${techs}"
+											th:value="${tech.id}"
+											th:text="${tech.name}">
+									</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<button type="submit" class="btn btn-primary">Save</button>
+								<a href="/roles" class="btn btn-default">back</a>
+							</div>
+						</form>
+					</div>
 				</div>
-				<div class="form-group">
-					<select th:field="*{ticket.technician}" class="custom-select">
-						<option th:each="tech : ${techs}"
-								th:value="${tech.id}"
-								th:text="${tech.name}">
-						</option>
-					</select>
-				</div>
-				<div class="form-group">
-					<button type="submit" class="btn btn-primary">Save</button>
-					<a href="/roles" class="btn btn-default">back</a>
-				</div>
-			</form>
-		</div>
-	</div>
-	<script th:src="@{/layout/js/jquery.js}"></script>
-	<script th:src="@{/layout/bootstrap/js/bootstrap.min.js}"></script>
+			</div>
+		</div>		
+	</body>
+	<th:block th:replace="fragments/footer"></th:block>
 </html>

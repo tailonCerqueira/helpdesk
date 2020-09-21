@@ -2,41 +2,44 @@
 <html lang="pt" xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
 	xmlns:layout="http://ultraq.net.nz/thymeleaf/layout/">
-<head>
-	<meta charset="UTF-8">
-	<title>HelpDesk</title>
-
-	<link rel="stylesheet" type="text/css" th:href="@{/layout/bootstrap/css/bootstrap.min.css}"/>	
-	<link rel="stylesheet" type="text/css" th:href="@{/layout/css/app.css}"/>
-</head>
-	<div>
-		<div class="col-xs-12 col-md-12">
-			<a href="/roles/new" class="btn btn-success">Create</a>
-		</div>
-		<div class="col-xs-12 col-md-12">
-			<h5 class="mt-4 mb-4">Listing roles</h5>
-			<table class="table table-bordered">
-				<thead>
-					<tr>
-						<th>Id</th>
-						<th>Role name</th>
-						<th>Actions</th>				
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="role : ${list}">
-						<td th:text="${role.id}"></td>
-						<td th:text="${role.name}"></td>
-						<td>
-							<form th:action="@{/roles/{id}(id = ${role.id})}" th:method="delete">
-								<button class="btn btn-danger">Delete</button>
-							</form>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-	</div>
-	<script th:src="@{/layout/js/jquery.js}"></script>
-	<script th:src="@{/layout/bootstrap/js/bootstrap.min.js}"></script>
+	
+	<body id="page-top">
+		<!-- Page Wrapper -->
+	  	<div id="wrapper">
+	  		<th:block th:replace="fragments/sidebar"></th:block>	  	
+	
+			<div id="content-wrapper" class="d-flex flex-column">
+				<!-- Main Content -->
+      			<div id="content">
+					<div class="col-xs-12 col-md-12">
+						<a href="/roles/new" class="btn btn-success">Create</a>
+					</div>
+					<div class="col-xs-12 col-md-12">
+						<h5 class="mt-4 mb-4">Listing roles</h5>
+						<table class="table table-bordered">
+							<thead>
+								<tr>
+									<th>Id</th>
+									<th>Role name</th>
+									<th>Actions</th>				
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="role : ${list}">
+									<td th:text="${role.id}"></td>
+									<td th:text="${role.name}"></td>
+									<td>
+										<form th:action="@{/roles/{id}(id = ${role.id})}" th:method="delete">
+											<button class="btn btn-danger">Delete</button>
+										</form>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>		
+			</div>
+		</div>	
+	</body>
+	<th:block th:replace="fragments/footer"></th:block>
 </html>

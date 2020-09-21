@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.core.io.InputStreamResource;
@@ -28,7 +29,7 @@ public class ReportsController {
 		this.ticketService = ticketService;
 	}
 	
-	@GetMapping("tickets")
+	@GetMapping("/tickets")
 	public String ticketReport(@RequestParam(required = false, value = "day") Integer day, Model model) {
 		model.addAttribute("list", this.ticketService.reportTicketByDays(day));
 		return "reports/ticket";
@@ -39,7 +40,7 @@ public class ReportsController {
 		return "reports/ticket_pdf"; 
 	}
 	
-	@GetMapping(value = "/tickets/pdf", produces = MediaType.APPLICATION_PDF_VALUE)
+	@PostMapping(value = "/tickets/pdf", produces = MediaType.APPLICATION_PDF_VALUE)
 	public ResponseEntity<InputStreamResource> pdfTicketReport(@RequestParam(required = false, value = "day") Integer day, Model model) {
 		List<Ticket> tickets = this.ticketService.reportTicketByDays(day);
 				
